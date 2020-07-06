@@ -18,3 +18,140 @@
 // </div>
 //
 // Use your function to create a card for each of the articles and add the card to the DOM.
+function articleCard() {
+
+    
+    const divCard = document.createElement("div");
+    divCard.classList.add("card");
+
+
+
+    axios.get("https://lambda-times-backend.herokuapp.com/articles").then((response)=>{
+    console.log(response.data.articles);
+
+    const data = response.data.articles;
+
+    for(let i = 0; i<data["javascript"].length; i++){
+        
+        const divHeadline = document.createElement("div");
+        divHeadline.classList.add("headline");
+        divHeadline.textContent = `${data["javascript"][i]["headline"]}`
+        divCard.appendChild(divHeadline);
+
+        const divAuthor = document.createElement("div");
+        divAuthor.classList.add("author");
+        divCard.appendChild(divAuthor);
+
+        const divImg = document.createElement("div");
+        divImg.classList.add("img-container");
+        divAuthor.appendChild(divImg);
+
+        const authorImg = document.createElement("img");
+        authorImg.src = `${data["javascript"][i]["authorPhoto"]}`
+        divImg.appendChild(authorImg);
+
+        const authorName = document.createElement("span");
+        authorName.textContent = `${data["javascript"][i]["authorName"]}`
+        divAuthor.appendChild(authorName);
+    }
+
+    for(let i = 0; i<data["bootstrap"].length; i++){
+        const divHeadline = document.createElement("div");
+        divHeadline.classList.add("headline");
+        divHeadline.textContent = `${data["bootstrap"][i]["headline"]}`
+        divCard.appendChild(divHeadline);
+
+        const divAuthor = document.createElement("div");
+        divAuthor.classList.add("author");
+        divCard.appendChild(divAuthor);
+
+        const divImg = document.createElement("div");
+        divImg.classList.add("img-container");
+        divAuthor.appendChild(divImg);
+
+        const authorImg = document.createElement("img");
+        authorImg.src = `${data["bootstrap"][i]["authorPhoto"]}`
+        divImg.appendChild(authorImg);
+
+        const authorName = document.createElement("span");
+        authorName.textContent = `${data["bootstrap"][i]["authorName"]}`
+        divAuthor.appendChild(authorName);
+    }
+
+    for(let i = 0; i<data["jquery"].length; i++){
+        const divHeadline = document.createElement("div");
+        divHeadline.classList.add("headline");
+        divHeadline.textContent = `${data["jquery"][i]["headline"]}`
+        divCard.appendChild(divHeadline);
+
+        const divAuthor = document.createElement("div");
+        divAuthor.classList.add("author");
+        divCard.appendChild(divAuthor);
+
+        const divImg = document.createElement("div");
+        divImg.classList.add("img-container");
+        divAuthor.appendChild(divImg);
+
+        const authorImg = document.createElement("img");
+        authorImg.src = `${data["jquery"][i]["authorPhoto"]}`
+        divImg.appendChild(authorImg);
+
+        const authorName = document.createElement("span");
+        authorName.textContent = `${data["jquery"][i]["authorName"]}`
+        divAuthor.appendChild(authorName);
+    }
+
+    for(let i = 0; i<data["node"].length; i++){
+        const divHeadline = document.createElement("div");
+        divHeadline.classList.add("headline");
+        divHeadline.textContent = `${data["node"][i]["headline"]}`
+        divCard.appendChild(divHeadline);
+
+        const divAuthor = document.createElement("div");
+        divAuthor.classList.add("author");
+        divCard.appendChild(divAuthor);
+
+        const divImg = document.createElement("div");
+        divImg.classList.add("img-container");
+        divAuthor.appendChild(divImg);
+
+        const authorImg = document.createElement("img");
+        authorImg.src = `${data["node"][i]["authorPhoto"]}`
+        divImg.appendChild(authorImg);
+
+        const authorName = document.createElement("span");
+        authorName.textContent = `${data["node"][i]["authorName"]}`
+        divAuthor.appendChild(authorName);
+    }
+
+    for(let i = 0; i<data["technology"].length; i++){
+        const divHeadline = document.createElement("div");
+        divHeadline.classList.add("headline");
+        divHeadline.textContent = `${data["technology"][i]["headline"]}`
+        divCard.appendChild(divHeadline);
+
+        const divAuthor = document.createElement("div");
+        divAuthor.classList.add("author");
+        divCard.appendChild(divAuthor);
+
+        const divImg = document.createElement("div");
+        divImg.classList.add("img-container");
+        divAuthor.appendChild(divImg);
+
+        const authorImg = document.createElement("img");
+        authorImg.src = `${data["technology"][i]["authorPhoto"]}`
+        divImg.appendChild(authorImg);
+
+        const authorName = document.createElement("span");
+        authorName.textContent = `${data["technology"][i]["authorName"]}`
+        divAuthor.appendChild(authorName);
+    }
+    
+}).catch((e)=>{
+    console.log(e);
+});
+
+    return document.querySelector("div.cards-container").appendChild(divCard);
+}
+
+articleCard();
