@@ -18,133 +18,75 @@
   </div>
 */
 
+
+
 function carouselComponent() {
+
+  let index = 0;
 
   const carouselDiv = document.createElement("div");
   carouselDiv.classList.add("carousel");
 
+  const imgArray = ["./assets/carousel/mountains.jpeg", "./assets/carousel/computer.jpeg", "./assets/carousel/trees.jpeg","./assets/carousel/turntable.jpeg"];
+
+  let img = document.createElement("img");
+  img.setAttribute("src", imgArray[index]);
+  carouselDiv.appendChild(img);
+
+
+  let changeImg = event => {
+
+    event.preventDefault();
+
+    console.log('damn you just clicked me');
+
+    if (event.target.classList.contains('right-button')) { 
+
+      if (index < 3) {
+
+        index++;
+
+        document.querySelector('.carousel img').setAttribute("src", imgArray[index]);
+
+      } else if (index === 3) {
+
+        index = 0;
+
+        document.querySelector('.carousel img').setAttribute("src", imgArray[index]);
+
+      }
+    }
+    
+    if(event.target.classList.contains('left-button')){
+      if(index > 0){
+        index--;
+        document.querySelector('.carousel img').setAttribute("src", imgArray[index]);
+      }
+      
+      
+      else if(index === 0){
+        index = 3;
+
+      document.querySelector('.carousel img').setAttribute("src", imgArray[index]);
+      }
+    }
+
+  }
+
+ 
+
   const leftButton = document.createElement("div");
   leftButton.classList.add("left-button");
   leftButton.innerHTML = "<"
+  leftButton.addEventListener("click", event => changeImg(event));
 
   carouselDiv.appendChild(leftButton);
 
-  let click = 0;
-
-  const mountains = document.createElement("img");
-  const computer = document.createElement("img");
-  const trees = document.createElement("img");
-  const turntable = document.createElement("img");
-  
-  // const mountains = document.createElement("img");
-  // mountains.src = "./assets/carousel/mountains.jpeg";
-  // carouselDiv.appendChild(mountains);
-
-  // const computer = document.createElement("img");
-  // computer.src = "./assets/carousel/computer.jpeg";
-  // carouselDiv.appendChild(computer);
-
-
-  // const trees = document.createElement("img");
-  // trees.src = "./assets/carousel/trees.jpeg";
-  // carouselDiv.appendChild(trees);
-
-  // const turntable = document.createElement("img");
-  // turntable.src = "./assets/carousel/turntable.jpeg";
-  // carouselDiv.appendChild(turntable);
-
-
-
-
-  leftButton.addEventListener("click", (event)=>{
-    if(click === 0){
-      
-      turntable.src = "./assets/carousel/turntable.jpeg";
-    
-      carouselDiv.appendChild(turntable);
-    }
-    if(click === 1){
-      
-      trees.src = "./assets/carousel/trees.jpeg";
-      carouselDiv.removeChild(turntable);
-      carouselDiv.appendChild(trees);
-    }
-    if(click === 2){
-      
-      computer.src = "./assets/carousel/computer.jpeg";
-
-      carouselDiv.removeChild(trees);
-      carouselDiv.appendChild(computer);
-    }
-    if(click === 3){
-      
-      mountains.src = "./assets/carousel/mountains.jpeg";
-      
-      carouselDiv.removeChild(computer);
-      carouselDiv.appendChild(mountains);
-    }
-    if(click === 4){
-      click = 0;
-      carouselDiv.removeChild(mountains);
-      turntable.src = "./assets/carousel/turntable.jpeg";
-    
-      carouselDiv.appendChild(turntable);
-    }
-
-    console.log(click);
-
-    ++click;
-  });
-
-  
-
-
   const rightButton = document.createElement("div");
   rightButton.classList.add("right-button");
-  rightButton.innerHTML = ">";
-
-
+  rightButton.innerHTML = ">"  
+  rightButton.addEventListener("click", event => changeImg(event));
   carouselDiv.appendChild(rightButton);
-
-  rightButton.addEventListener("click", (event)=>{
-    if(click === 0){
-      
-      mountains.src = "./assets/carousel/mountains.jpeg";
-    
-      carouselDiv.appendChild(mountains);
-    }
-    if(click === 1){
-      
-      computer.src = "./assets/carousel/computer.jpeg";
-      carouselDiv.removeChild(mountains);
-      carouselDiv.appendChild(computer);
-    }
-    if(click === 2){
-      
-      trees.src = "./assets/carousel/trees.jpeg";
-
-      carouselDiv.removeChild(computer);
-      carouselDiv.appendChild(trees);
-    }
-    if(click === 3){
-      
-      turntable.src = "./assets/carousel/turntable.jpeg";
-      
-      carouselDiv.removeChild(trees);
-      carouselDiv.appendChild(turntable);
-    }
-    if(click === 4){
-      click = 0;
-      carouselDiv.removeChild(turntable);
-      mountains.src = "./assets/carousel/mountains.jpeg";
-    
-      carouselDiv.appendChild(mountains);
-    }
-
-    console.log(click);
-
-    ++click;
-  });
   
 
   console.log(carouselDiv);
