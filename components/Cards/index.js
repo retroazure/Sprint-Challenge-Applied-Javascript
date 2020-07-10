@@ -24,15 +24,13 @@ function articleCard() {
     const divCard = document.createElement("div");
     divCard.classList.add("card");
 
-
-
     axios.get("https://lambda-times-backend.herokuapp.com/articles").then((response)=>{
     console.log(response.data.articles);
 
     const data = response.data.articles;
 
     for(let i = 0; i<data["javascript"].length; i++){
-        
+
         const divHeadline = document.createElement("div");
         divHeadline.classList.add("headline");
         divHeadline.textContent = `${data["javascript"][i]["headline"]}`
@@ -155,3 +153,6 @@ function articleCard() {
 }
 
 articleCard();
+
+
+
